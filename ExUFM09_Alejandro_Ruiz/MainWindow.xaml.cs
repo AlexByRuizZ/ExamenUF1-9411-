@@ -33,8 +33,8 @@ namespace ExUFM09_Alejandro_Ruiz
 
         private void btnEst_Click(object sender, RoutedEventArgs e)
         {
-            WriteableBitmap foto = new WriteableBitmap(1920,1080,100,100,PixelFormats.Bgr24, null);
-            esteganografiar(foto, "hola");
+           //WriteableBitmap foto = new WriteableBitmap(1920,1080,100,100,PixelFormats.Bgr24, null);
+            //esteganografiar(foto, "hola");
         }
 
         public WriteableBitmap generarImtage()
@@ -49,19 +49,27 @@ namespace ExUFM09_Alejandro_Ruiz
             byte[] bytesImatge = new byte[nbytesImatge];
 
             int nByte = 0;
-            for(int i =0; i< heigthImatge;i++)
+
+            Random random = new Random();
+            int R1 = random.Next(0, 255);
+            int G1 = random.Next(0, 255);
+            int B1 = random.Next(0, 255);
+            int R2 = random.Next(0, 255);
+            int G2 = random.Next(0, 255);
+            int B2 = random.Next(0, 255);
+            for (int i =0; i< heigthImatge;i++)
             {
                 for(int j=0; j<widthImatge;j++)
                 {
-                    bytesImatge[nByte] = 0;
-                    bytesImatge[nByte+1] = 0;
-                    bytesImatge[nByte + 2] = 255;
+                    bytesImatge[nByte] = (byte)R1;
+                    bytesImatge[nByte+1] = (byte)G1;
+                    bytesImatge[nByte + 2] = (byte)B1;
                     
                     if(j< widthImatge/2)
                     {
-                        bytesImatge[nByte] = 255;
-                        bytesImatge[nByte + 1] = 0;
-                        bytesImatge[nByte + 2] = 0;
+                        bytesImatge[nByte] = (byte)R2;
+                        bytesImatge[nByte + 1] = (byte)G2;
+                        bytesImatge[nByte + 2] = (byte)B2;
                     }
                     nByte += 3;
                 }
